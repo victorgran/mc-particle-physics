@@ -1,2 +1,1 @@
-# mc-particle-physics
-Monte Carlo Simulations for Particle Physics
+# Monte Carlo event generator for the simulation of electron-positron annihilation to quark-antiquark production 
