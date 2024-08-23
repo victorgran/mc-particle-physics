@@ -2,6 +2,5 @@ numpy==1.26.4
 pandas==2.2.2
 python-dateutil==2.9.0.post0
 pytz==2024.1
--e git+https://github.com/VictorG20/mc-particle-physics.git@3f0024420b2b204de0519f65b01cef7bad4e6c96#egg=simulator
 six==1.16.0
 tzdata==2024.1
