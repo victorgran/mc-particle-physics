@@ -1,9 +1,9 @@
 import numpy as np
+import matplotlib.pyplot as plt
 import pandas as pd
 
-from simulator import MonteCarloIntegrator, true_sigma_1a, getDistros
+from simulator import MonteCarloIntegrator, true_sigma_1a, getDistros, plotMonteCarloErrors
 from all_cross_sections import compareQuarkSumMethods, showResults
-# from plotting import plot_mc_error
 
 
 def getMCErrors(sample_sizes: np.ndarray | list[int]):
@@ -49,6 +49,14 @@ def main() -> None:
     # MC error-estimate plot. #
     ###########################
     # TODO: Plot sample sizes vs. mc_errors.
+    dpi = 400
+    _ = plotMonteCarloErrors(sample_sizes, [mc_errors])
+
+    if save_figure:
+        plt.savefig(figure_path, dpi=dpi, bbox_inches='tight')
+        print(f"Figure saved to {figure_path}.")
+
+    plt.show()
 
     return
 
@@ -65,6 +73,6 @@ if __name__ == '__main__':
     # Get logarithmically-equally-spaced points for sample sizes. Log is base 10.
     N_values = np.logspace(1, 7, num=30, dtype=int)
 
-    save_figure = False  # Save plot of Monte Carlo error estimate vs. sample size.
+    save_figure = True  # Save plot of Monte Carlo error estimate vs. sample size.
     figure_path = "figures/ex1_part_b.png"
     main()
