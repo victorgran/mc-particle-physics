@@ -1,54 +1,70 @@
 import numpy as np
+import pandas as pd
 
-from simulator import MonteCarloIntegrator, true_sigma_1a
+from simulator import MonteCarloIntegrator, true_sigma_1a, getDistros
+from all_cross_sections import compareQuarkSumMethods, showResults
 # from plotting import plot_mc_error
+
+
+def getMCErrors(sample_sizes: np.ndarray | list[int]):
+    """
+    Compute the Monte Carlo error estimate on the total cross-section, for different sample sizes N.
+
+    :return:
+    """
+
+    N_sizes = sorted(sample_sizes)  # Make sure it's in ascending order.
+
+    mc_errors = np.array([])
+    integrator = MonteCarloIntegrator(sum_quark_method="random")
+
+    for N in N_sizes:
+        integrator.sample_diff_cross_section(N)
+        mc_error = integrator.integrate_cross_section()[1]
+        mc_errors = np.append(mc_errors, mc_error)
+
+    return N_sizes, mc_errors
 
 
 def main() -> None:
     ###############################################################################
     # MC estimates are statistically equivalent for both flavour summing options. #
     ###############################################################################
-    integrator1 = MonteCarloIntegrator(sum_quark_method="explicit")
-    integrator1.sample_diff_cross_section(sample_size)
-    sigma1, mc_err1 = integrator1.integrate_cross_section()
+    print("\nCross-section results\n")
+    s_distro, beam_distro = getDistros(part="b")
+    results_b = compareQuarkSumMethods(s_distro, beam_distro, sample_size)
+    showResults(results_b, true_sigma_1a, title="Fixed beam spectrum.")
 
-    integrator2 = MonteCarloIntegrator(sum_quark_method="random")
-    integrator2.sample_diff_cross_section(sample_size)
-    sigma2, mc_err2 = integrator2.integrate_cross_section()
-
-    print(f"Estimates for {sample_size:,d} Monte Carlo points.")
-    print(f"Explicit sum result: {sigma1:,.2f} +/- {mc_err1:,.2f}")
-    print(f"Rand flavour result: {sigma2:,.2f} +/- {mc_err2:,.2f}")
-    print(f"Exact cross-section: {true_sigma_1a:,.2f}")
+    if load_data:
+        df = pd.read_csv(data_path)
+        sample_sizes = list(df["sample_sizes"])
+        mc_errors = list(df["mc_errors"])
+    else:
+        sample_sizes, mc_errors = getMCErrors(N_values)
+        if save_data:
+            df = pd.DataFrame({"sample_sizes": sample_sizes, "mc_errors": mc_errors})
+            df.to_csv(data_path, index=False)
 
     ###########################
     # MC error-estimate plot. #
     ###########################
-
-    # Make logarithmically-equally-spaced integer values for N.
-    N_min_exp = 1  # Minimum power of 10 for N.
-    N_max_exp = 7
-    N_points = 30
-    N_values = np.logspace(N_min_exp, N_max_exp, num=N_points, dtype=int)
-
-    # Compute the Monte Carlo error at each value of N.
-    mc_errors = np.array([])
-    integrator = MonteCarloIntegrator(sum_quark_method="random")
-
-    for N in N_values:
-        integrator.sample_diff_cross_section(N)
-        mc_error = integrator.integrate_cross_section()[1]
-        mc_errors = np.append(mc_errors, mc_error)
-
-    # plot_mc_error(N_values, mc_errors,
-    #               save_fig=save_figure,
-    #               save_name="./figures/exercise1b_plot.png"
-    #               )
+    # TODO: Plot sample sizes vs. mc_errors.
 
     return
 
 
 if __name__ == '__main__':
     sample_size = 100_000  # Number of MC points to compute the cross-section.
+
+    #########################################
+    # MC errors for different sample sizes. #
+    #########################################
+    load_data = True  # If true, the plot is generated from existing data.
+    save_data = True  # If true, generated data for the plot is saved.
+    data_path = "data/ex1_part_b.csv"  # Path to either load or save data.
+    # Get logarithmically-equally-spaced points for sample sizes. Log is base 10.
+    N_values = np.logspace(1, 7, num=30, dtype=int)
+
     save_figure = False  # Save plot of Monte Carlo error estimate vs. sample size.
+    figure_path = "figures/ex1_part_b.png"
     main()
