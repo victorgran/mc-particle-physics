@@ -75,7 +75,7 @@ class MonteCarloIntegrator:
         ###########################
         self._sum_quark_method = sum_quark_method
         self._sum_over_quarks = self._setQuarkMethod()
-        self._quark_flavours = np.array([])
+        self._quark_flavours = np.array([], dtype=int)
 
         self._d_sigmas = np.array([])
 
