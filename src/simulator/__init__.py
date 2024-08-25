@@ -8,3 +8,4 @@ from .integrator.squared_matrix_element import squared_matrix_element
 
 
 from .plotting.mc_error import plotMonteCarloErrors
+from .plotting.fontsize import setFontSizes
