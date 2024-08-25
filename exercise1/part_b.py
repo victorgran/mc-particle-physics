@@ -16,6 +16,10 @@ def main() -> None:
     results_b = compareQuarkSumMethods(s_distro, beam_distro, sample_size)
     showResults(results_b, true_sigma_1a, title="Fixed beam spectrum.")
 
+    ###########################
+    # MC error-estimate plot. #
+    ###########################
+
     if load_data:
         df = pd.read_csv(data_path)
         sample_sizes = list(df["sample_sizes"])
@@ -27,10 +31,6 @@ def main() -> None:
         if save_data:
             df = pd.DataFrame({"sample_sizes": sample_sizes, "mc_errors": mc_errors[0]})
             df.to_csv(data_path, index=False)
-
-    ###########################
-    # MC error-estimate plot. #
-    ###########################
 
     setFontSizes(factor=font_size_div_factor, all_equal=save_figure)
     _ = plotMonteCarloErrors(sample_sizes, mc_errors, make_lines=[True], labels=["Fixed beam"])
