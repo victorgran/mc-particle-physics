@@ -53,6 +53,6 @@ if __name__ == '__main__':
     s_max = (Z.mass + 3 * Z.width) ** 2
 
     save_figures = False
-    fig_div_factor = 0.7
+    fig_div_factor = 0.6
     dpi = 400
     main()
