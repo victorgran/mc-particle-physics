@@ -5,7 +5,7 @@ def setFontSizes(factor: float = 1., all_equal: bool = False) -> None:
     """
     Set font sizes for a given plot with matplotlib. In order for this to have effect,
     it needs to be run BEFORE a figure is generated.
-     
+
     :param factor: Division factor for the font sizes. Smaller factors result in larger font sizes.
     :param all_equal: If true, all font sizes are set to the bigger font size after dividing by 'factor'.
     :return:
