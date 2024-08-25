@@ -5,23 +5,31 @@ from .colors import *
 
 scatter_colors = [french_blue, midnight_blue, purple]
 scatter_shapes = ["^", "x", None]
+line_colors = [red, orange, red]
 
 
-# TODO: Implement setting font sizes according to how the image will be resized in a document.
 def plotMonteCarloErrors(sample_sizes: list[int],
-                         mc_errors: list[float] | list[np.ndarray],
-                         labels: list[str | None] = None):
+                         mc_errors: list[list[float]] | list[np.ndarray],
+                         labels: list[str | None] = None, make_lines: list[bool] = None):
 
     fig, ax = plt.subplots(figsize=(7, 5))
 
     labels = labels if labels is not None else [None for _ in range(len(mc_errors))]
+    make_lines = [False for _ in range(len(mc_errors))] if make_lines is None else make_lines
 
-    for (series, label, color, marker) in zip(mc_errors, labels, scatter_colors, scatter_shapes):
+    for (series, label, color, marker, make_line, line_color) in zip(mc_errors, labels, scatter_colors,
+                                                                     scatter_shapes, make_lines, line_colors):
+
         ax.scatter(sample_sizes, series, label=label, color=color, zorder=5, marker=marker)
+        
+        if not make_line:
+            continue
+
+        # Make linear regression and plot resulting line with its slope as label.
         linear_params = np.polyfit(np.log10(sample_sizes), np.log10(series), deg=1)
         line_equation = np.poly1d(linear_params)
         ax.plot(sample_sizes, np.power(10, line_equation(np.log10(sample_sizes))),
-                label=fr"$Slope: {linear_params[0]:.2f} $", color=red, linewidth=2.2, zorder=2)
+                label=fr"$Slope: {linear_params[0]:.2f} $", color=line_color, linewidth=2.2, zorder=2)
 
     ax.set_xlabel(r"Sample size $N$")
     ax.set_ylabel("MC error estimate")
