@@ -11,6 +11,16 @@ line_colors = [red, orange, red]
 def plotMonteCarloErrors(sample_sizes: list[int],
                          mc_errors: list[list[float]] | list[np.ndarray],
                          labels: list[str | None] = None, make_lines: list[bool] = None):
+    """
+    Plot the Monte Carlo error estimates at different sample sizes. Optionally, create a linear regression
+    for any given series of MC error estimates and plot the resulting line labeled by its slope.
+
+    :param sample_sizes: Sample sizes in ascending order.
+    :param mc_errors: List of series of Monte Carlo error estimates.
+    :param labels: Labels for each series of Monte Carlo error estimates.
+    :param make_lines: Boolean array to specify if a linear regression is desired at a given series.
+    :return: Axes of the figure.
+    """
 
     fig, ax = plt.subplots(figsize=(7, 5))
 
