@@ -30,7 +30,7 @@ class Dirac(Distribution):
     """
     def __init__(self, x0: int | float):
         self._x0 = x0  # Root of the Dirac delta.
-        def sample_method(_): return self._x0
+        def sample_method(sample_size: int): return np.ones(sample_size) * self._x0
         def evaluate_distro(_): return 1
         super().__init__(sample_method, evaluate_distro)
 
