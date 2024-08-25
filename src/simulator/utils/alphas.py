@@ -1,10 +1,6 @@
 from numpy import pi, log
 
-# QCD group constants
-NC = 3.
-TR = 1./2.
-CA = NC
-CF = (NC*NC-1.)/(2.*NC)
+from .qcd_group_constants import *
 
 
 class AlphaS:
