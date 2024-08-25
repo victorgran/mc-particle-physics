@@ -41,7 +41,7 @@ def plotHistogram() -> None:
 
     flat_distros = getDistros("d")
     integrator = MonteCarloIntegrator(s_distro=flat_distros[0], beam_distro=flat_distros[1], sum_quark_method="random")
-    integrator.sample_diff_cross_section(histo_N)
+    integrator.sampleDeltaSigma(histo_N)
     s_values = integrator.s_samples
     d_sigmas = integrator.d_sigmas
 
@@ -56,8 +56,8 @@ def plotHistogram() -> None:
         s_distribution = Dirac(s)
         integrator = MonteCarloIntegrator(s_distro=s_distribution, beam_distro=s_distribution,
                                           sum_quark_method="random")
-        integrator.sample_diff_cross_section(histo_N)
-        sigma, _ = integrator.integrate_cross_section()
+        integrator.sampleDeltaSigma(histo_N)
+        sigma, _ = integrator.integrateCrossSection()
         sigma_vals.append(sigma)
 
     sigma_vals = np.array(sigma_vals)

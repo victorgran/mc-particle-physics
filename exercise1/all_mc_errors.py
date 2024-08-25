@@ -29,8 +29,8 @@ def getMCErrors(sample_sizes: np.ndarray | list[int], integrators: list[MonteCar
     for (k, N) in enumerate(N_sizes):
         for (idx, integrator) in enumerate(integrators):
             integrator: MonteCarloIntegrator
-            integrator.sample_diff_cross_section(N)
-            mc_error = integrator.integrate_cross_section()[1]
+            integrator.sampleDeltaSigma(N)
+            mc_error = integrator.integrateCrossSection()[1]
             mc_errors[idx][k] = mc_error
 
     return N_sizes, mc_errors

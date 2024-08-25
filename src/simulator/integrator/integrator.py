@@ -148,7 +148,7 @@ class MonteCarloIntegrator:
 
         return ratios
 
-    def sample_diff_cross_section(self, N):
+    def sampleDeltaSigma(self, N):
         if self._d_sigmas.size > N:  # There are enough samples already.
             return
 
@@ -170,7 +170,7 @@ class MonteCarloIntegrator:
 
         return
 
-    def integrate_cross_section(self) -> tuple[float, float]:
+    def integrateCrossSection(self) -> tuple[float, float]:
         N = self._d_sigmas.size
         if N == 0:
             exit("No samples for the differential cross-section have been generated.")

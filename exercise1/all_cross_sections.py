@@ -26,14 +26,14 @@ def compareQuarkSumMethods(s_distribution, beam_distribution, sample_size: int):
     integrator1 = MonteCarloIntegrator(s_distro=s_distribution,
                                        beam_distro=beam_distribution,
                                        sum_quark_method="explicit")
-    integrator1.sample_diff_cross_section(sample_size)
-    sigma1, mc_err1 = integrator1.integrate_cross_section()
+    integrator1.sampleDeltaSigma(sample_size)
+    sigma1, mc_err1 = integrator1.integrateCrossSection()
 
     integrator2 = MonteCarloIntegrator(s_distro=s_distribution,
                                        beam_distro=beam_distribution,
                                        sum_quark_method="random")
-    integrator2.sample_diff_cross_section(sample_size)
-    sigma2, mc_err2 = integrator2.integrate_cross_section()
+    integrator2.sampleDeltaSigma(sample_size)
+    sigma2, mc_err2 = integrator2.integrateCrossSection()
 
     return [sigma1, mc_err1, sigma2, mc_err2, sample_size]
 
