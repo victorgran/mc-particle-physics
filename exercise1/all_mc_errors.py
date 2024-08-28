@@ -9,6 +9,7 @@ The plot includes two lines representing the decrease of the MC error estimate w
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from pathlib import Path
 
 from simulator import MonteCarloIntegrator, getDistros, plotMonteCarloErrors, setFontSizes
 
@@ -73,15 +74,28 @@ def main() -> None:
 
 
 if __name__ == '__main__':
+    repo_dir = str(Path(__file__).parent.parent)  # Path to the repository directory.
+    data_dir = repo_dir + "/data/"  # Path to data/
+    figs_dir = repo_dir + "/figures/"  # Path to figures/
 
+    ##################
+    # Data variables #
+    ##################
     load_data = True  # If true, the plot is generated from existing data.
     save_data = False  # If true, generated data for the plot is saved. Ignored if data is loaded.
-    data_path = "data/ex1_all_mc_errors.csv"  # Path to either load or save data.
+    data_name = "ex1_all_mc_errors.csv"  # Filename for Monte Carlo error estimates data.
+    data_path = data_dir + data_name  # Path to either load or save data. By default, saved or loaded from data/
+
     # Get logarithmically-equally-spaced points for sample sizes. Log is base 10.
     N_values = np.logspace(1, 7, num=30, dtype=int)
 
+    ####################
+    # Figure variables #
+    ####################
     save_figure = False  # Save plot of Monte Carlo error estimate vs. sample size.
+    figure_name = "ex1_all_mc_errors.png"
     font_size_div_factor = 0.8  # Adjust font sizes for visibility in document.
-    dpi = 400
-    figure_path = "figures/ex1_all_mc_errors.png"
+    dpi = 400  # Dots per inch for saving the figure.
+    figure_path = figs_dir + figure_name  # Path to save the figure. By default, saved to figures/
+
     main()
