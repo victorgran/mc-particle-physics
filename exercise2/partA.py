@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from pathlib import Path
 
 from simulator import alpha_QCD_MZ, ZBoson, setFontSizes, AlphaS
 
@@ -29,13 +30,17 @@ def main() -> None:
 
 
 if __name__ == '__main__':
+
     t_min_exp = 1  # Minimum base 10 exponent in GeV2.
     t_max_exp = 4
     t_points = 300
     t_values = np.logspace(t_min_exp, t_max_exp, num=t_points)
 
-    save_figure = True
-    figure_path = "figures/exercise2a.png"
+    save_figure = False
+    repo_dir = str(Path(__file__).parent.parent)  # Path to the repository directory.
+    figures_dir = repo_dir + "/figures/"  # Path to figures/
+    figure_name = "exercise2a.png"
+    figure_path = figures_dir + figure_name  # Path to save figure.
     font_size_f = 0.6  # Adjust font sizes for visibility in document.
-    dpi = 400
+    dpi = 400  # Dots per inch for saving the figure.
     main()
