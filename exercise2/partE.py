@@ -10,7 +10,7 @@ from simulator.utils import AlphaS, Analysis, Shower, plot_jet_histograms
 from partB import formEvents
 
 
-def runAnalysis(data_path: str):
+def runAnalysis():
     # Set QCD running coupling and energy scale.
     Z = ZBoson()
     alphas = AlphaS(Z.mass2, alpha_QCD_MZ)
@@ -38,12 +38,10 @@ def runAnalysis(data_path: str):
 
 
 def main():
-    data_dir = str(Path(__file__).parent.parent) + "/data/"  # Path to data/
-    data_path = data_dir + file_name
     if load_data:
         pass
     else:
-        runAnalysis(data_path)
+        runAnalysis()
 
     sherpa_yoda = data_dir + "sherpa.yoda"  # Path to sherpa.yoda
     plot_jet_histograms([sherpa_yoda, data_path + ".yoda"])
@@ -55,8 +53,11 @@ def main():
 if __name__ == '__main__':
     # NOTE: In order to ensure reproducibility, a seeded random generator has
     # been declared as a global variable within the utils/shower.py script.
+
+    data_dir = str(Path(__file__).parent.parent) + "/data/"  # Path to data/
     sample_size = 100_000
     load_data = True
     file_name = f"ex2e-analysis_{sample_size:_.0f}"  # By default, data is saved to data/
+    data_path = data_dir + file_name
     save_fig = False
     main()
