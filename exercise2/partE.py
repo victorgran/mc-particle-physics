@@ -5,7 +5,8 @@ from tqdm import tqdm
 
 from simulator.constants import alpha_QCD_MZ
 from simulator.integrator import MonteCarloIntegrator, ZBoson
-from simulator.utils import AlphaS, Analysis, Shower, plot_jet_histograms
+from simulator.plotting import plotJetHistograms, setFontSizes
+from simulator.utils import AlphaS, Analysis, Shower
 
 from partB import formEvents
 
@@ -38,14 +39,23 @@ def runAnalysis():
 
 
 def main():
-    if load_data:
-        pass
-    else:
+    if not load_data:
         runAnalysis()
 
     sherpa_yoda = data_dir + "sherpa.yoda"  # Path to sherpa.yoda
-    plot_jet_histograms([sherpa_yoda, data_path + ".yoda"])
-    plt.show()
+    filenames = [sherpa_yoda, data_path + ".yoda"]
+    colors = ["red", "blue"]
+    labels = ["Sherpa", f"Simulator {sample_size:,.0f} events"]
+
+    setFontSizes(font_size_div_factor, all_equal=True)
+
+    plots = plotJetHistograms(filenames, single_plot=False, colors=colors, labels=labels)
+
+    for k, (fig, ax) in enumerate(plots):
+        if save_figs:
+            fig.savefig(figs_dir + f"jet_histo_{k + 1}.png", dpi=dpi, bbox_inches='tight')
+
+        plt.show(block=True)
 
     return
 
@@ -54,10 +64,18 @@ if __name__ == '__main__':
     # NOTE: In order to ensure reproducibility, a seeded random generator has
     # been declared as a global variable within the utils/shower.py script.
 
-    data_dir = str(Path(__file__).parent.parent) + "/data/"  # Path to data/
-    sample_size = 100_000
-    load_data = True
-    file_name = f"ex2e-analysis_{sample_size:_.0f}"  # By default, data is saved to data/
-    data_path = data_dir + file_name
-    save_fig = False
+    repo_dir = str(Path(__file__).parent.parent)  # Path to the repository directory.
+    data_dir = repo_dir + "/data/"  # Path to data/
+    figs_dir = repo_dir + "/figures/"  # Path to figures/
+
+    sample_size = 100_000  # Number of events.
+
+    load_data = True  # If true, plot(s) are generated from existing data.
+    data_name = f"ex2e-analysis_{sample_size:_.0f}"  # By default, saved to data/
+    data_path = data_dir + data_name
+
+    save_figs = False
+    font_size_div_factor = 0.7  # Adjust font sizes for visibility in document.
+    dpi = 400
+
     main()
