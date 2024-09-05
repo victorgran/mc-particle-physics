@@ -9,6 +9,7 @@ from .integrator.squared_matrix_element import squared_matrix_element
 from .plotting.fontsize import setFontSizes
 from .plotting.grid import plotGrid
 from .plotting.histogram import plotHistogram
+from .plotting.jets import plotJetHistograms
 from .plotting.mc_error import plotMonteCarloErrors
 
 from .utils.alphas import AlphaS
