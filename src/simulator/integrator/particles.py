@@ -1,6 +1,8 @@
 """
 Definitions of particles as classes, containing their relevant attributes for the project.
 """
+from __future__ import annotations
+
 import numpy as np
 
 from simulator.constants import sin2w

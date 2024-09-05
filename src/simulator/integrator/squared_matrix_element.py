@@ -2,6 +2,7 @@
 Definition of the squared matrix element for the electron-positron
 to quark-antiquark cross-section to leading order.
 """
+from __future__ import annotations
 
 import numpy as np
 from simulator.constants import alpha_QED, kappa, QCD_colors

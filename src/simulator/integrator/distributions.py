@@ -4,6 +4,8 @@ Definitions of Dirac, Uniform and Breit-Wigner distributions.
 Each of these is implemented as a child class from the parent “Distribution” class,
 which requires defining the sampling and evaluation properties for each of them.
 """
+from __future__ import annotations
+
 import numpy as np
 
 
