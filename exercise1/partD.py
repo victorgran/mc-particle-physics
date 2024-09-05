@@ -116,7 +116,7 @@ if __name__ == '__main__':
     histo_N = 200_000  # Sample size to create histogram.
     s_points = 250  # Number of points to scan, with the fixed beam energy integrator, between s_min and s_max.
 
-    save_histo = True
+    save_histo = False
     histo_name = "ex1_part_d_histo.png"
     font_size_div_factor2 = 0.7  # Adjust font sizes for visibility in document.
     histo_path = figs_dir + histo_name  # Path to save the figure. By default, saved to figures/
