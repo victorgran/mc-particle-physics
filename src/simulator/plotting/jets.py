@@ -118,8 +118,8 @@ def _fillAxes(histo_data, axes, is_reference: bool = False, ref_bins=None, color
         heights = (heights - ref_bins["heights"]) / (ref_bins["errors"])
         errors /= ref_bins["errors"]
 
-        ratio_axis.step(xmin, heights, where="post")
-        ratio_axis.errorbar(centers, heights, yerr=errors, fmt='none')
+        ratio_axis.step(xmin, heights, where="post", color=color)
+        ratio_axis.errorbar(centers, heights, yerr=errors, fmt='none', color=color)
 
     return
 
