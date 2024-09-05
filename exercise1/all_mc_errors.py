@@ -6,6 +6,8 @@ Create a single plot of the Monte Carlo error estimate vs. sample size for three
 
 The plot includes two lines representing the decrease of the MC error estimate with 1/sqrt(N).
 """
+from __future__ import annotations
+
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd

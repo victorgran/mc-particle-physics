@@ -49,7 +49,7 @@ def plotGrid(grid, n_inc, axes, n_grid=33, shrink=False, **kwargs):
         ax.set_ylabel(kwargs.get("ylabel"))
 
     if dx == 0:
-        ax.set_xlabel(r"$s \; [\text{GeV}^{2}]$")
+        ax.set_xlabel(r"$s \; [\mathrm{GeV}^{2}]$")
         ax.xaxis.set_major_formatter(StrMethodFormatter('{x:,.0f}'))
         # Line Z mass squared.
         ax.vlines(91.2 ** 2, *yrange, linewidth=2, colors="#ED2939", label=r"$M_{Z}^{2}$", zorder=2)

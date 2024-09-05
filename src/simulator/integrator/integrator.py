@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import numpy as np
 
 from simulator.constants import f_conv, N_q

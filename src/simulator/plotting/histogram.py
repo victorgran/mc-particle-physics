@@ -13,7 +13,7 @@ def plotHistogram(s_values, weights, s_range, sigma_vals, num_bins: int, s_min: 
     y_max = max(sigma_vals)
     ax.vlines(91.2 ** 2, 0, y_max, linestyles='dashed', colors="#058743", label=r"$M_{Z}^{2}$")
 
-    ax.set_xlabel(r"$s \; [\text{GeV}^{2}]$")
+    ax.set_xlabel(r"$s \; [\mathrm{GeV}^{2}]$")
     ax.xaxis.set_major_formatter(StrMethodFormatter('{x:,.0f}'))
 
     ax.set_ylabel(r"$\sigma$ [pb]")

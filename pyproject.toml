@@ -6,7 +6,7 @@ authors = [
 ]
 description = "Monte Carlo simulator for the electron-positron to quark-antiquark process."
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.8"
 classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
