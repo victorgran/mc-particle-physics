@@ -1,7 +1,9 @@
 import numpy as np
 from tqdm import tqdm
 
-from simulator import AlphaS, MonteCarloIntegrator, Shower, ZBoson, alpha_QCD_MZ
+from simulator.constants import alpha_QCD_MZ
+from simulator.integrator import MonteCarloIntegrator, ZBoson
+from simulator.utils import AlphaS, Shower
 from partB import formEvents
 
 
