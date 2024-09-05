@@ -49,6 +49,10 @@ def main():
 
     setFontSizes(font_size_div_factor, all_equal=True)
 
+    # from simulator.utils import plot_jet_histograms
+    # plot_jet_histograms(filenames)
+    # plt.show()
+
     plots = plotJetHistograms(filenames, single_plot=False, colors=colors, labels=labels)
 
     for k, (fig, ax) in enumerate(plots):
@@ -68,7 +72,7 @@ if __name__ == '__main__':
     data_dir = repo_dir + "/data/"  # Path to data/
     figs_dir = repo_dir + "/figures/"  # Path to figures/
 
-    sample_size = 100_000  # Number of events.
+    sample_size = 1_000_000  # Number of events.
 
     load_data = True  # If true, plot(s) are generated from existing data.
     data_name = f"ex2e-analysis_{sample_size:_.0f}"  # By default, saved to data/
