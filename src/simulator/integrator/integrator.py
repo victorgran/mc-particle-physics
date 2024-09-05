@@ -139,7 +139,7 @@ class MonteCarloIntegrator:
 
         return sum_over_quarks
 
-    def _divideByDistros(self, integrand):
+    def _divideByDistros(self, integrand) -> np.ndarray:
         s_distro_vals = self._s_distro.evaluate_distro(self._s_values)
         cos_dist_vals = self._cos_distro.evaluate_distro(self._cos_vals)
         phi_dist_vals = self._phi_distro.evaluate_distro(self._phi_vals)
@@ -151,10 +151,12 @@ class MonteCarloIntegrator:
         return ratios
 
     def sampleDeltaSigma(self, N):
-        if self._d_sigmas.size > N:  # There are enough samples already.
+        num_samples = np.size(self._d_sigmas)  # Current amount of samples.
+
+        if num_samples > N:  # There are enough samples already.
             return
 
-        sample_size = N if self._d_sigmas.size == 0 else N - self._d_sigmas.size
+        sample_size = N if num_samples == 0 else N - num_samples
 
         s_values = self._s_distro.sample(sample_size)
         cos_vals = self._cos_distro.sample(sample_size)
@@ -173,7 +175,7 @@ class MonteCarloIntegrator:
         return
 
     def integrateCrossSection(self) -> tuple[float, float]:
-        N = self._d_sigmas.size
+        N = np.size(self._d_sigmas)
         if N == 0:
             exit("No samples for the differential cross-section have been generated.")
 

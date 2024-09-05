@@ -30,35 +30,35 @@ class Bin1D:
     def fill(self, x, w):
         """Add weight w."""
         self.w += w
-        self.w2 += w*w
-        self.wx += w*x
-        self.wx2 += w*w*x
+        self.w2 += w * w
+        self.wx += w * x
+        self.wx2 += w * w * x
         self.n += 1.
 
     def scale(self, factor):
         """Scale current weight by `factor`."""
         self.w *= factor
-        self.w2 *= factor*factor
+        self.w2 *= factor * factor
         self.wx *= factor
-        self.wx2 *= factor*factor
+        self.wx2 *= factor * factor
 
 
 class Point2D:
     """A single point in a 2D scatter plot."""
-    
+
     def __init__(self, xmin, xmax):
-        self.x = (xmax + xmin)/2
-        self.xerr = [(xmax - xmin)/2]*2
+        self.x = (xmax + xmin) / 2
+        self.xerr = [(xmax - xmin) / 2] * 2
         self.y = 0
-        self.yerr = [0]*2
-    
+        self.yerr = [0] * 2
+
     def __repr__(self):
         return str(self)
-    
+
     def __str__(self):
         return "{0:10.6e}\t{1:10.6e}\t{2:10.6e}\t{3:10.6e}\t{4:10.6e}\t{5:10.6e}".format(
             self.x, self.xerr[0], self.xerr[1], self.y, self.yerr[0], self.yerr[1])
-    
+
     def scale(self, factor):
         """Scale y dimension by `factor`."""
         self.y *= factor
@@ -72,9 +72,9 @@ class Histo1D:
         self.name = name
         self.bins = []
         self.uflow = Bin1D(-sys.float_info.max, xmin)
-        width = (xmax-xmin)/nbin
+        width = (xmax - xmin) / nbin
         for i in range(nbin):
-            self.bins.append(Bin1D(xmin+i*width, xmin+(i+1)*width))
+            self.bins.append(Bin1D(xmin + i * width, xmin + (i + 1) * width))
         self.oflow = Bin1D(xmax, sys.float_info.max)
         self.total = Bin1D(-sys.float_info.max, sys.float_info.max)
         self.scaled_by = 1.
@@ -88,9 +88,9 @@ class Histo1D:
         s += "ScaledBy={0}\n".format(self.scaled_by)
         s += "Title=\nType=Histo1D\n"
         s += "# ID\tID\tsumw\tsumw2\tsumwx\tsumwx2\tnumEntries\n"
-        s += self.total.format("Total")+"\n"
-        s += self.uflow.format("Underflow")+"\n"
-        s += self.oflow.format("Overflow")+"\n"
+        s += self.total.format("Total") + "\n"
+        s += self.uflow.format("Underflow") + "\n"
+        s += self.oflow.format("Overflow") + "\n"
         s += "# xlow\txhigh\tsumw\tsumw2\tsumwx\tsumwx2\tnumEntries\n"
         for i in range(len(self.bins)):
             s += "{0}\n".format(self.bins[i])
@@ -99,23 +99,23 @@ class Histo1D:
 
     def fill(self, x, w):
         """Fill a single point of weight w at a given x coordinate."""
-        l = 0
-        r = len(self.bins)-1
-        c = (l+r)//2
+        L = 0
+        r = len(self.bins) - 1
+        c = (L + r) // 2
         a = self.bins[c].xmin
-        while r-l > 1:
+        while r - L > 1:
             if x < a:
                 r = c
             else:
-                l = c
-            c = (l+r)//2
+                L = c
+            c = (L + r) // 2
             a = self.bins[c].xmin
         if x > self.bins[r].xmin:
             self.oflow.fill(x, w)
-        elif x < self.bins[l].xmin:
+        elif x < self.bins[L].xmin:
             self.uflow.fill(x, w)
         else:
-            self.bins[l].fill(x, w)
+            self.bins[L].fill(x, w)
         self.total.fill(x, w)
 
     def scale(self, factor):
@@ -142,9 +142,9 @@ class Scatter2D:
     def __init__(self, npoints, xmin, xmax, name="/MC/untitled"):
         self.name = name
         self.points = []
-        width = (xmax-xmin)/npoints
+        width = (xmax - xmin) / npoints
         for i in range(npoints):
-            self.points.append(Point2D(xmin+i*width, xmin+(i+1)*width))
+            self.points.append(Point2D(xmin + i * width, xmin + (i + 1) * width))
         self.scaled_by = 1.
 
     def __repr__(self):

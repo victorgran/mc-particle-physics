@@ -51,8 +51,8 @@ def _singlePlot(filenames: list[str], **kwargs):
     histonames, histos = data_objects(filenames, yoda_type="HISTO1D")
 
     fig, ax = plt.subplots(figsize=(7, 5))
-    sums = np.zeros(len(histos[filenames[0]][histonames[0]]["bins"]))
-    sums2 = sums.copy()
+    sums: np.ndarray = np.zeros(len(histos[filenames[0]][histonames[0]]["bins"]))
+    sums2: np.ndarray = np.copy(sums)
 
     for i in range(len(sums)):
         sums[i] += sum([histos[filenames[0]][n]["bins"][i][2] for n in histonames])
@@ -82,7 +82,7 @@ def _singlePlot(filenames: list[str], **kwargs):
 def getBinsData(histo_data: dict) -> dict:
 
     bins_array = np.array(histo_data["bins"])
-    xmin, xmax, areas, errs_area = bins_array.T
+    xmin, xmax, areas, errs_area = np.transpose(bins_array)
     widths = xmax - xmin
     centers = 0.5 * (xmax + xmin)
     heights = areas / widths
