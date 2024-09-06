@@ -13,11 +13,19 @@ from simulator import MonteCarloIntegrator, getDistros, true_sigma_1a, true_sigm
 
 def showResults(results, true_value: float, title: str):
     sigma1, mc_err1, sigma2, mc_err2, sample_size = results
+
+    # Use the error estimate to format the printing of the values.
+    from numpy import log10
+    digits1 = round(log10(mc_err1))
+    digits1 = digits1 if digits1 < 0 else 0
+    digits2 = round(log10(mc_err2))
+    digits2 = digits2 if digits2 < 0 else 0
+
     print(title)
-    print(f"Estimates for {sample_size:,d} Monte Carlo points.")
-    print(f"Explicit sum result: {sigma1:,.2f} +/- {mc_err1:,.2f}")
-    print(f"Rand flavour result: {sigma2:,.2f} +/- {mc_err2:,.2f}")
-    print(f"Exact cross-section: {true_value:,.2f}")
+    print(f"  Estimates for {sample_size:,d} Monte Carlo points.")
+    print(f"    Explicit sum result: {sigma1:,.{digits1}f}({mc_err1:,.{digits1}f})")
+    print(f"    Rand flavour result: {sigma2:,.{digits2}f}({mc_err2:,.{digits2}f})")
+    print(f"    Exact cross-section: {true_value:,.{min(digits1, digits2)}f}")
     print()
     return
 
