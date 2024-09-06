@@ -16,7 +16,7 @@ kiwisolver==1.4.7
     # via matplotlib
 matplotlib==3.9.2
     # via simulator (pyproject.toml)
-numpy==2.1.1
+numpy==1.26.4
     # via
     #   contourpy
     #   gvar
