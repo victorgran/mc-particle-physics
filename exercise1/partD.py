@@ -23,7 +23,7 @@ def plotErrorEstimate() -> None:
             df.to_csv(data_path, index=False)
 
     setFontSizes(factor=font_size_div_factor, all_equal=save_figure)
-    _ = plotMonteCarloErrors(sample_sizes, mc_errors, make_lines=[True], labels=["Fixed beam"])
+    _ = plotMonteCarloErrors(sample_sizes, mc_errors, make_lines=[True], labels=["Flat beam"])
 
     if save_figure:
         plt.savefig(figure_path, dpi=dpi, bbox_inches='tight')
@@ -75,10 +75,9 @@ def sHistogram() -> None:
 def main() -> None:
 
     # Confirm that your Monte Carlo estimate for sigma with the flat beam spectrum is compatible with 9880(50) pb.
-    print("\nCross-section results\n")
     s_distro, beam_distro = getDistros(part="d")
     results_b = compareQuarkSumMethods(s_distro, beam_distro, sample_size)
-    showResults(results_b, true_sigma_1c, title="Fixed beam spectrum.")
+    showResults(results_b, true_sigma_1c, title="Cross-section results for the flat beam spectrum.")
 
     plotErrorEstimate()
     sHistogram()

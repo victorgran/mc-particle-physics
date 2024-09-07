@@ -3,7 +3,8 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from pathlib import Path
 
-from simulator import MonteCarloIntegrator, true_sigma_1a, getDistros, plotMonteCarloErrors, setFontSizes
+from simulator import MonteCarloIntegrator, true_sigma_1a, getDistros
+from simulator.plotting import setFontSizes, plotMonteCarloErrors
 from all_cross_sections import compareQuarkSumMethods, showResults
 from all_mc_errors import getMCErrors
 
@@ -12,10 +13,10 @@ def main() -> None:
     ###############################################################################
     # MC estimates are statistically equivalent for both flavour summing options. #
     ###############################################################################
-    print("\nCross-section results\n")
     s_distro, beam_distro = getDistros(part="b")
     results_b = compareQuarkSumMethods(s_distro, beam_distro, sample_size)
-    showResults(results_b, true_sigma_1a, title="Fixed beam spectrum.")
+    showResults(results_b, true_sigma_1a,
+                title="Cross-section results for the fixed beam spectrum.")
 
     ###########################
     # MC error-estimate plot. #
