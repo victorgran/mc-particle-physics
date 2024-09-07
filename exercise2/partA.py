@@ -2,7 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from pathlib import Path
 
-from simulator import alpha_QCD_MZ, ZBoson, setFontSizes, AlphaS
+from simulator import alpha_QCD_MZ, ZBoson, setFontSizes
+from simulator.utils import AlphaS
 
 
 def main() -> None:
