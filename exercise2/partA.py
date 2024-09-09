@@ -42,6 +42,6 @@ if __name__ == '__main__':
     figures_dir = repo_dir + "/figures/"  # Path to figures/
     figure_name = "exercise2a.png"
     figure_path = figures_dir + figure_name  # Path to save figure.
-    font_size_f = 0.6  # Adjust font sizes for visibility in document.
+    font_size_f = 0.4  # Adjust font sizes for visibility in document.
     dpi = 400  # Dots per inch for saving the figure.
     main()
