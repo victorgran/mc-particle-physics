@@ -18,6 +18,7 @@ def main() -> None:
     ax.set_xlabel(r"$t \; [\mathrm{GeV}^{2}]$")
     ax.set_xscale('log')
     ax.set_ylabel(r"$\alpha_{s}$")
+    plt.locator_params(axis='y', nbins=10)
     plt.grid(linestyle='--', linewidth=0.8)
 
     if save_figure:
@@ -32,7 +33,7 @@ def main() -> None:
 
 if __name__ == '__main__':
 
-    t_min_exp = 1  # Minimum base 10 exponent in GeV2.
+    t_min_exp = 0  # Minimum base 10 exponent in GeV2.
     t_max_exp = 4
     t_points = 300
     t_values = np.logspace(t_min_exp, t_max_exp, num=t_points)
