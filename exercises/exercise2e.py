@@ -8,7 +8,7 @@ from simulator.integrator import MonteCarloIntegrator, ZBoson
 from simulator.plotting import plotJetHistograms, setFontSizes
 from simulator.utils import AlphaS, Analysis, Shower
 
-from partB import formEvents
+from exercise2b import formEvents
 
 
 def runAnalysis():

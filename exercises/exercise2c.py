@@ -4,7 +4,7 @@ from tqdm import tqdm
 from simulator.constants import alpha_QCD_MZ
 from simulator.integrator import MonteCarloIntegrator, ZBoson
 from simulator.utils import AlphaS, Shower
-from partB import formEvents
+from exercise2b import formEvents
 
 
 def main() -> None:
