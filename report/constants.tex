@@ -1,0 +1,44 @@
+\section{Numerical values and squared matrix element} \label{sec:app-num-values}
+
+The physical constants used throughout the project are given in \autoref{tab:app-num-constants}.
+\begin{table}[ht!]
+    \centering
+    \renewcommand{\arraystretch}{1.3}
+    \setlength{\arrayrulewidth}{0.3mm}
+    \begin{tabular}{ccl}
+        \hline Symbol & Value & Description \\ \hline
+        $\alpha$ & 1/129 & QED coupling \\
+        $\alpha_{s}(M_{\text{Z}})$ & 0.118 & QCD coupling at the Z mass scale \\
+        $M_{\text{Z}}$ & 91.2 & Z boson mass \\
+        $\Gamma_{\text{Z}}$ & 2.5 & Z boson decay width \\
+        $\sin^{2}{\theta_{W}}$ & 0.223 & squared sine of the Weinberg angle \\
+        $Q_{\text{e}}$ & -1 & electric charge of the electron \\
+        $Q_{\text{u,c}}$ & 2/3 & electric charge of (light) up-type quarks \\
+        $Q_{\text{d,s,b}}$ & -1/3 & electric charge of down-type quark \\
+        $T^{3}_{\text{u,c}}$ & 1/2 & weak isospin of (light) up-type quarks \\
+        $T^{3}_{\text{d,s,b,e}}$ & -1/2 & weak isospin of down-type quarks and the electron \\
+        $N_{q}$ & 5 & number of light quark flavours (i.e. u, d, s, c, and b) \\
+        $N_{C}$ & 3 & number of QCD colours \\
+        $f_{\text{conv}}$ & 3.89379656 $\cdot 10^{8}$ & physical units conversion factor \\ \hline
+    \end{tabular}
+    \caption{Numerical constants used throughout the project. Masses and decay widths are given in GeV.}
+    \label{tab:app-num-constants}
+\end{table}
+
+To leading order, the squared matrix element for the process $\mathrm{e}^{-} \mathrm{e}^{+} \to \mathrm{q} \bar{\mathrm{q}}$ is given by
+\begin{equation}
+    \begin{aligned}
+    \lvert \mathcal{M}_{\mathrm{q} \bar{\mathrm{q}}} \rvert^{2} = (4 \pi \alpha)^{2} N_{C} & \left[
+    \left( 1 + \cos^{2}{\theta} \right) \left\{ Q_{\mathrm{e}}^{2} Q_{\mathrm{q}}^{2} + 2 Q_{\mathrm{e}} Q_{\mathrm{q}} V_{\mathrm{e}} V_{\mathrm{q}} \chi_{1}(s) + \left( A_{\mathrm{e}}^{2} + V_{\mathrm{e}}^{2} \right) \left( A_{\mathrm{q}}^{2} + V_{\mathrm{q}}^{2} \right) \chi_{2}(s) \right\}
+    \right. \\
+    & \left. \qquad + \cos{\theta} \left\{ 4 Q_{\mathrm{e}} Q_{\mathrm{q}} A_{\mathrm{e}} A_{\mathrm{q}} \chi_{1}(s) + 8 A_{\mathrm{e}} V_{\mathrm{e}} A_{\mathrm{q}} V_{\mathrm{q}} \chi_{2}(s) \right\} \right],
+    \end{aligned}
+\end{equation}
+where
+\begin{equation}
+    V_{\mathrm{f}} = T_{\mathrm{f}}^{3} - 2 Q_{\mathrm{f}} \sin^{2}{\theta_{W}} \qquad \text{and} \qquad A_{\mathrm{f}} = T_{\mathrm{f}}^{3}
+\end{equation}
+are the vector and axial couplings of the fermions to the Z boson, respectively, and 
+\begin{equation}
+    \chi_{1}(s) = \frac{ \kappa s (s - M_{\text{Z}}^{2})}{(s - M_{\text{Z}}^{2})^{2} + \Gamma_{\text{Z}}^{2} M_{\text{Z}}^{2}}, \quad \chi_{2}(s) = \frac{\kappa^{2} s^{2}}{(s - M_{\text{Z}}^{2})^{2} + \Gamma_{\text{Z}}^{2} M_{\text{Z}}^{2}}, \quad \kappa = \frac{1}{4 \sin^{2}{\theta_{W}}(1 - \sin^{2}{\theta_{W}})}.
+\end{equation}

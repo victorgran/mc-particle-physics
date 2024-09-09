@@ -1,0 +1,51 @@
+\documentclass{article}
+\usepackage{geometry}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{enumitem}
+\usepackage{amsmath}
+
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{hyperref}
+\hypersetup{
+    citecolor = blue,
+    colorlinks = true,
+    linkcolor = blue,
+    urlcolor  = red,
+    % linkbordercolor = {white},
+}
+
+\usepackage[compat=1.1.0]{tikz-feynman}
+\usepackage{tabularx}
+\usepackage{wrapfig}
+
+% Uncomment below to check document without figures/tables.
+% \usepackage{environ}
+% \RenewEnviron{figure}{}% Gobble figure environment
+% \RenewEnviron{table}{}% Gobble table environment
+
+\title{Monte Carlo Simulations for Particle Physics}
+\author{Victor Manuel Granados Pinto}
+\date{August 2024}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+    In this project, a Monte Carlo event generator for the simulation of the process $\mathrm{e}^{+} \mathrm{e}^{-} \to \mathrm{q} \bar{\mathrm{q}}$ has been developed. In the first section, the integration of the cross-section for the fixed-order description of the $2 \to 2$ scattering process at leading order in the Matrix element is discussed. Then, in section 2, the scattering process is supplemented with an all-order simulation of the cascade of bremsstrahlung emitted by the quark-antiquark pair.
+\end{abstract}
+
+\tableofcontents
+
+\include{exercise1}
+
+\include{exercise2}
+
+\begin{appendix}
+    \include{constants}
+    \include{vegas_grids}
+\end{appendix}
+
+\end{document}
