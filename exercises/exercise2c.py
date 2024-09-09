@@ -17,10 +17,11 @@ def main() -> None:
     integrator.sampleDeltaSigma(sample_size)
 
     events = formEvents(integrator)
+    shower = Shower(alphas)
     fs_particles = []
 
     for event in tqdm(events):
-        Shower(alphas).run(event, t=s)  # Running the shower modifies 'event' in-place.
+        shower.run(event, t=s)  # Running the shower modifies 'event' in-place.
         out_particles = (len(event) - 2)  # Don't count the 2 incoming particles.
         fs_particles.append(out_particles)
 
