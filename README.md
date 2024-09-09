@@ -24,13 +24,13 @@ By default, no images are saved and relevant data is loaded from [data/](data) w
 ## Relevant files
 
 1. The (relevant) code required for parts a), c) and f) of exercise 1, is distributed along the files:
-   * [distributions.py](src/simulator/integrator/distributions.py): contains the implementation of the Dirac, Uniform, and Breit-Wigner distributions.
-   * [integrator.py](src/simulator/integrator/integrator.py): Monte Carlo integrator.
-2. The use of `vegas` is contained in the corresponding exercise script [exercise1e.py](exercises/exercise1e.py) except for the plotting of the grids, which is in [grid.py](src/simulator/plotting/grid.py).
+   * [distributions.py](simulator/src/simulator/integrator/distributions.py): contains the implementation of the Dirac, Uniform, and Breit-Wigner distributions.
+   * [integrator.py](simulator/src/simulator/integrator/integrator.py): Monte Carlo integrator.
+2. The use of `vegas` is contained in the corresponding exercise script [exercise1e.py](exercises/exercise1e.py) except for the plotting of the grids, which is in [grid.py](simulator/src/simulator/plotting/grid.py).
 3. The code for exercise 2, part b), is split into two parts:
    1. A function which generates events from the Monte Carlo integrator sampling points, [exercise2b.py](exercises/exercise2b.py).
    2. The actual use of the parton shower class, [exercise2c.py](exercises/exercise2c.py).
-4. The implementation of the Durham algorithm within the `Analysis` class is in the file [analysis.py](src/simulator/utils/analysis.py).
+4. The implementation of the Durham algorithm within the `Analysis` class is in the file [analysis.py](simulator/src/simulator/utils/analysis.py).
 
 ## Instructions
 
