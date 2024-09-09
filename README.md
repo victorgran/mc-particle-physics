@@ -1,26 +1,38 @@
 # Monte Carlo event generator for the simulation of electron-positron annihilation to quark-antiquark production 
 
+## Set up
+
+Clone the repository, create a virtual environment, activate it, and install the python package (requires Python >= 3.8, I didn't test with Python > 3.10, though).
+```shell
+git clone https://github.com/VictorG20/mc-particle-physics.git
+cd mc-particle-physics  # Access the repository directory.
+python -m venv .my_venv  # Create a virtual environment.
+. .my_venv/bin/activate  # Activate it.
+pip install . # Install the python package.
+```
+
+## Checking the exercises
+
+Having installed the `simulator` package, the python scripts from [exercises/](exercises) can be executed from the terminal as follows
+```bash
+(my_venv) ... $ python exercises/exercise1d.py
+```
+By default, no images are saved and relevant data is loaded from [data/](data) when available to avoid computing it. This behavior can be changed within each script by setting the relevant variables to False.
+
+**Note:** Every random process is seeded by default so, technically (hopefully), everything should be reproducible and the values should match those in the report.
+
+## Relevant files
+
+1. The (relevant) code required for parts a), c) and f) of exercise 1, is distributed along the files:
+   * [distributions.py](src/simulator/integrator/distributions.py): contains the implementation of the Dirac, Uniform, and Breit-Wigner distributions.
+   * [integrator.py](src/simulator/integrator/integrator.py): Monte Carlo integrator.
+2. The use of `vegas` is contained in the corresponding exercise script [exercise1e.py](exercises/exercise1e.py) except for the plotting of the grids, which is in [grid.py](src/simulator/plotting/grid.py).
+3. The code for exercise 2, part b), is split into two parts:
+   1. A function which generates events from the Monte Carlo integrator sampling points, [exercise2b.py](exercises/exercise2b.py).
+   2. The actual use of the parton shower class, [exercise2c.py](exercises/exercise2c.py).
+4. The implementation of the Durham algorithm within the `Analysis` class is in the file [analysis.py](src/simulator/utils/analysis.py).
+
 ## Instructions
-
-
-### Set up
-
-In order to have a not-so-painful experience:
-
-```bash
-$ git clone https://github.com/VictorG20/mc-particle-physics.git
-$ cd mc-particle-physics  # Access the repository directory.
-$ python -m venv .my_venv  # Create a virtual environment.
-$ . .my_venv/bin/activate  # Activate it.
-(my_venv) ... $ pip install -r requirements.txt # Install the python package with all its dependencies.
-```
-
-### Checking the exercises
-
-Having installed the `simulator` package, the python scripts from `exercises/` can be executed from the terminal as follows
-```bash
-(my_venv) ... $ python exercise1/part_d.py
-```
 
 ### How to start an instance of the Monte Carlo integrator
 
@@ -31,7 +43,7 @@ By default, an instance of the Integrator with no arguments yields the following
 * Uniform distributions for $-1 \leq \cos{\theta} < 1$ and $0 \leq \phi < 2 \pi $.
 * An explicit sum over light quark flavours.
 
-```python
+```python3.10
 from simulator import MonteCarloIntegrator
 
 sample_size = 100_000  # Number of Monte Carlo points to generate.
@@ -41,7 +53,7 @@ sigma, mc_error = integrator_b.integrateCrossSection()
 ```
 
 After integrating the cross-section, one can sample more the same integrator, in which case the total sample size is the sum of sample sizes passed, e.g.
-```python
+```python3.10
 from simulator import MonteCarloIntegrator
 
 sample_size = 100_000  # Number of Monte Carlo points to generate.
@@ -53,7 +65,7 @@ sigma2, mc_error2 = integrator_b.integrateCrossSection()  # Estimates for a samp
 ```
 
 Other distributions, such as a uniform or Breit-Wigner distributions can be defined and used to instantiate the Monte Carlo integrator as follows
-```python
+```python3.10
 from simulator import MonteCarloIntegrator, Uniform, BreitWigner, ZBoson
 
 Z = ZBoson()
@@ -63,14 +75,3 @@ s_distro = BreitWigner(s_min=s_min, s_max=s_max, mass=Z.mass, decay_width=Z.widt
 beam_distro = Uniform(lower=s_min, upper=s_max)
 integrator = MonteCarloIntegrator(s_distro=s_distro, beam_distro=beam_distro, sum_quark_method="random")
 ```
-
-## Where are the relevant parts?
-
-If you are the tutor reviewing the projects, you might be fed up with having to go through more or less the same things over and over again. A quick way to go through this repository, depending on what you want to have a look at, is the following:
-* Where is the code for exercise 1, parts a), c) and f), Lebowski?
-  * All the code for the integrator (or at least the one I could think you might want to see) is within these two files: [`integrator.py`](src/simulator/integrator/integrator.py) and [`distributions.py`](src/simulator/integrator/distributions.py) (the second one is relevant only because it has the definition of the Breit-Wigner distribution)
-* How did you get your figures and results for exercise 1?
-  * See (or just execute) the scripts in [`exercise1`](exercises). If executed, they will display all the relevant information one is supposed to get from them. By default, nothing is saved and, when available, the relevant data in [`data/`](data) is loaded to avoid computing stuff (although most of it should run in seconds at most).
-
-
-**Note:** Every random process is seeded by default so, technically (hopefully), everything should be reproducible.
