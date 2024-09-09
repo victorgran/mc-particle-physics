@@ -70,7 +70,7 @@ If you are the tutor reviewing the projects, you might be fed up with having to 
 * Where is the code for exercise 1, parts a), c) and f), Lebowski?
   * All the code for the integrator (or at least the one I could think you might want to see) is within these two files: [`integrator.py`](src/simulator/integrator/integrator.py) and [`distributions.py`](src/simulator/integrator/distributions.py) (the second one is relevant only because it has the definition of the Breit-Wigner distribution)
 * How did you get your figures and results for exercise 1?
-  * See (or just execute) the scripts in [`exercise1`](exercise1). If executed, they will display all the relevant information one is supposed to get from them. By default, nothing is saved and, when available, the relevant data in [`data/`](data) is loaded to avoid computing stuff (although most of it should run in seconds at most).
+  * See (or just execute) the scripts in [`exercise1`](exercises). If executed, they will display all the relevant information one is supposed to get from them. By default, nothing is saved and, when available, the relevant data in [`data/`](data) is loaded to avoid computing stuff (although most of it should run in seconds at most).
 
 
 **Note:** Every random process is seeded by default so, technically (hopefully), everything should be reproducible.
