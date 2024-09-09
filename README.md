@@ -8,7 +8,7 @@ git clone https://github.com/VictorG20/mc-particle-physics.git
 cd mc-particle-physics  # Access the repository directory.
 python -m venv .my_venv  # Create a virtual environment.
 . .my_venv/bin/activate  # Activate it.
-pip install . # Install the python package.
+pip install ./simulator # Install the python package.
 ```
 
 ## Checking the exercises
