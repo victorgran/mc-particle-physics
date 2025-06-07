@@ -4,7 +4,7 @@
 
 Clone the repository, create a virtual environment, activate it, and install the python package (requires Python >= 3.8, I didn't test with Python > 3.10, though).
 ```shell
-git clone https://github.com/VictorG20/mc-particle-physics.git
+git clone https://github.com/victorgran/mc-particle-physics.git
 cd mc-particle-physics  # Access the repository directory.
 python -m venv .my_venv  # Create a virtual environment.
 . .my_venv/bin/activate  # Activate it.
